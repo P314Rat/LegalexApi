@@ -25,8 +25,10 @@ namespace LegalexApi.Web.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest("Model isn't valid");
 
+            var a = Enum.GetValues(typeof(Service)).Cast<Service>();
+
             var service = Enum.GetValues(typeof(Service)).Cast<Service>()
-                .FirstOrDefault(service => service.GetDisplayName() == model.Service);
+                .FirstOrDefault(x => x.GetDisplayName() == model.Service);
 
             var order = new OrderDTO
             {

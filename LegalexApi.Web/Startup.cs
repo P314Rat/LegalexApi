@@ -44,12 +44,11 @@ namespace LegalexApi.Web
             else
             {
                 app.UseHsts();
+                app.UseHttpsRedirection();
                 app.UseExceptionHandler("/Error");
             }
 
             app.UseCors("AllowAll");
-
-            app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

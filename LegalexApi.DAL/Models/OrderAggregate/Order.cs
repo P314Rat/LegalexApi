@@ -9,11 +9,11 @@ namespace LegalexApi.DAL.Models.OrderAggregate
         NonSelected,
         [Display(Name = "Юридические услуги")]
         Legal,
-        [Display(Name = "Антикризисное управление")]
+        [Display(Name = "Антикризисное управление и банкротство")]
         CrisisManagement,
         [Display(Name = "Медиация")]
         Mediation,
-        [Display(Name = "HR услуги")]
+        [Display(Name = "HR-услуги")]
         HR,
         [Display(Name = "Услуги кадрового специалиста")]
         HRSupport,
@@ -27,10 +27,10 @@ namespace LegalexApi.DAL.Models.OrderAggregate
 
     public enum ClientType
     {
-        [Display(Name = "Физическое лицо")]
-        Person,
         [Display(Name = "Юридическое лицо")]
-        Legal
+        Legal,
+        [Display(Name = "Физическое лицо")]
+        Person
     }
 
     public class Order
