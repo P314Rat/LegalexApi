@@ -1,9 +1,11 @@
 ﻿using LegalexApi.BLL.BusinessProcesses.AddOrder;
 using LegalexApi.BLL.BusinessProcesses.SendNotification;
 using LegalexApi.BLL.DTO;
+using LegalexApi.DAL.Models.OrderAggregate;
 using LegalexApi.Web.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using LegalexApi.Utility.Extensions;
 
 
 namespace LegalexApi.Web.Controllers.API
@@ -23,10 +25,13 @@ namespace LegalexApi.Web.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest("Model isn't valid");
 
+            var service = Enum.GetValues(typeof(Service)).Cast<Service>()
+                .FirstOrDefault(service => service.GetDisplayName() == model.Service);
+
             var order = new OrderDTO
             {
                 ClientType = model.ClientType,
-                Service = model.Service,
+                Service = service,
                 Name = model.Name,
                 Contact = model.Contact,
                 Description = model.Description

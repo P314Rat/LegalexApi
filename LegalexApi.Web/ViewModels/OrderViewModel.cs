@@ -9,7 +9,7 @@ namespace LegalexApi.Web.ViewModels
         [Required]
         public ClientType ClientType { get; set; }
         [Required]
-        public Service Service { get; set; }
+        public string Service { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
