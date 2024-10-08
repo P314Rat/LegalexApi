@@ -32,7 +32,7 @@ namespace LegalexApi.Web.Controllers.API
 
             var order = new OrderDTO
             {
-                ClientType = model.ClientType,
+                ClientType = model.Type,
                 Service = service,
                 Name = model.Name,
                 Contact = model.Contact,

@@ -7,7 +7,7 @@ namespace LegalexApi.Web.ViewModels
     public class OrderViewModel
     {
         [Required]
-        public ClientType ClientType { get; set; }
+        public ClientType Type { get; set; }
         [Required]
         public string Service { get; set; }
         [Required]
