@@ -13,11 +13,13 @@ namespace LegalexApi.Web.Controllers.API
     public class OrderController : BaseApiController
     {
         private readonly IMediator _mediator;
+        private readonly IWebHostEnvironment _environment;
 
 
-        public OrderController(IMediator mediator)
+        public OrderController(IMediator mediator, IWebHostEnvironment environment)
         {
             _mediator = mediator;
+            _environment = environment;
         }
 
         public override async Task<IActionResult> Post(OrderViewModel model)
@@ -48,13 +50,16 @@ namespace LegalexApi.Web.Controllers.API
                 return BadRequest(ex.Message);
             }
 
-            try
+            if (_environment.IsProduction())
             {
-                await _mediator.Send(new SendNotificationCommand(order));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
+                try
+                {
+                    await _mediator.Send(new SendNotificationCommand(order));
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
 
             return Ok();

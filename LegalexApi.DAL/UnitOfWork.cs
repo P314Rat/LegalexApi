@@ -2,7 +2,6 @@
 using LegalexApi.DAL.Models.OrderAggregate;
 using LegalexApi.DAL.Storage;
 using LegalexApi.DAL.Storage.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace LegalexApi.DAL
@@ -18,8 +17,6 @@ namespace LegalexApi.DAL
         {
             _dbContext = dbContext;
             _orderRepository = new(dbContext);
-
-            InitialDatabase();
         }
 
         public void Dispose()
@@ -30,14 +27,6 @@ namespace LegalexApi.DAL
 
         public void SaveChanges()
         {
-            _dbContext.SaveChanges();
-        }
-
-        private void InitialDatabase()
-        {
-            if (_dbContext.Database.GetPendingMigrations().Any())
-                _dbContext.Database.Migrate();
-
             _dbContext.SaveChanges();
         }
     }
